@@ -1,0 +1,25 @@
+{
+  "name": "rules-engine",
+  "version": "0.1.0",
+  "description": "A flexible and powerful rule evaluation engine inspired by MongoDB filters.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "benchmark": "jest tests/performance --runInBand",
+    "test:int": "jest tests/integrations --runInBand",
+    "test:op": "jest tests/operators --runInBand",
+    "lint": "eslint .",
+    "build": "echo 'Nothing to build yet'"
+  },
+  "keywords": [
+    "rule-engine",
+    "json-rules",
+    "validation",
+    "decision-engine"
+  ],
+  "author": "Maayan Politzer",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
