@@ -1,8 +1,8 @@
 # RuleEngine
 
-A lightweight, flexible rule evaluation engine designed for simple or complex logical operations.  
-Perfect for projects requiring customizable validation, dynamic conditions, or decision trees based on json/js objects.
-
+A lightweight, powerful and flexible rule evaluation engine designed for simple or complex logical operations.  
+Perfect for projects requiring customizable validation, dynamic conditions, or decision trees based on json.
+inspired by MongoDB filters.
 ---
 
 ## Features
@@ -10,7 +10,6 @@ Perfect for projects requiring customizable validation, dynamic conditions, or d
 - Built-in operators: `$eq`, `$gt`, `$gte`, `$lt`, `$lte`, `$ne`, `$and`, `$or`, `$in`
 - Easy nesting of rules
 - Context-aware value resolution
-<!-- - Simple plugin-based architecture for future extensions -->
 - Zero dependencies
 - 100% JavaScript (Node.js)
 
@@ -19,17 +18,20 @@ Perfect for projects requiring customizable validation, dynamic conditions, or d
 ## Installation
 
 ```bash
-npm install rule-engine
+npm install @maayanpolitzer/rules-engine
 ```
 
-(Or clone this repository for local development.)
+Or clone the github repository for local development.
 
 ---
 
 ## Usage
 
 ```javascript
-import { evaluateRules } from "../../dist/index.esm.js";
+
+import { evaluateRules } from "@maayanpolitzer/rules-engine";       // ES Modules
+// OR
+const { evaluateRules } = require("@maayanpolitzer/rules-engine");  // CommonJS
 
 const context = {
   user: {
@@ -39,13 +41,14 @@ const context = {
 };
 
 const rules = [
-  { $gte: ["{{user.age}}", 18] },
-  { $eq: ["{{user.role}}", "admin"] },
+  { $lt: ["{{user.age}}", 25] },          // false
+  { $gte: ["{{user.age}}", 18] },         // true
+  { $eq: ["{{user.role}}", "admin"] },    // won't be checked... The top level rules array perform as $OR operations by default.
 ];
 
 const result = evaluateRules(rules, context);
 
-console.log(result);
+console.log(result);    // true
 ```
 
 ---
@@ -66,9 +69,26 @@ console.log(result);
 
 ---
 
+## Want To Use ? You Must Know This:
+
+By default, "evaluateRules" function can get a rule object or a rule objects array as arguments.
+In cases of multiple top level rules, the function perform an $OR operation which means that if one of the rules is true, the whole function returns `true`.
+If you want to return `true` only if all the top level rules array are true, wrap them with $AND.
+
+---
+
+## Why use $AND over $EQ ?
+
+Clone the Github Repo and run tests/performance/eq-vs-and test or 
+```bash
+npm run benchmark
+```
+
+---
+
 ## Important Notes
 
-- **Context Values**: To pull a dynamic value from the context, wrap it in double curly braces:  
+- **Context Values**: To pull a dynamic value from the context, wrap it in double curly braces:
   Example: "{{user.age}}"
 - **Nested Rules**: You can nest rules inside one another for complex logic.
 - **Error Handling**: Invalid paths or unsupported operators will throw clear errors.

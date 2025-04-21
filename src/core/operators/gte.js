@@ -7,7 +7,7 @@ import { evaluateRule } from "../evaluateRule";
 
 function gteOperator(params, context = {}) {
   if (!Array.isArray(params) || params.length !== 2) {
-    throw new Error('$gte operator expects an array with exactly two elements.');
+    throw new Error("$gte operator expects an array with exactly two elements.");
   }
 
   let [left, right] = params;

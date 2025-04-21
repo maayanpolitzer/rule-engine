@@ -58,7 +58,7 @@ function eqOperator(params, context = {}) {
 
 function gteOperator(params, context = {}) {
   if (!Array.isArray(params) || params.length !== 2) {
-    throw new Error('$gte operator expects an array with exactly two elements.');
+    throw new Error("$gte operator expects an array with exactly two elements.");
   }
 
   let [left, right] = params;
@@ -80,7 +80,7 @@ function gteOperator(params, context = {}) {
 
 function gtOperator(params, context = {}) {
   if (!Array.isArray(params) || params.length !== 2) {
-    throw new Error('$gt operator expects an array with exactly two elements.');
+    throw new Error("$gt operator expects an array with exactly two elements.");
   }
 
   const [left, right] = params.map(p => resolveValue(p, context));
@@ -89,7 +89,7 @@ function gtOperator(params, context = {}) {
 
 function ltOperator(params, context = {}) {
   if (!Array.isArray(params) || params.length !== 2) {
-    throw new Error('$lt operator expects an array with exactly two elements.');
+    throw new Error("$lt operator expects an array with exactly two elements.");
   }
 
   const [left, right] = params.map(p => resolveValue(p, context));
@@ -100,7 +100,7 @@ function ltOperator(params, context = {}) {
 
 function lteOperator(params, context = {}) {
   if (!Array.isArray(params) || params.length !== 2) {
-    throw new Error('$lte operator expects an array with exactly two elements.');
+    throw new Error("$lte operator expects an array with exactly two elements.");
   }
 
   const [left, right] = params.map(p => resolveValue(p, context));
@@ -111,7 +111,7 @@ function lteOperator(params, context = {}) {
 
 function neOperator(params, context = {}) {
   if (!Array.isArray(params) || params.length < 2) {
-    throw new Error('$ne operator expects an array with at least two elements.');
+    throw new Error("$ne operator expects an array with at least two elements.");
   }
 
   const resolvedValues = params.map(p => resolveValue(p, context));
@@ -123,7 +123,7 @@ function neOperator(params, context = {}) {
 
 function andOperator(params, context = {}) {
   if (!Array.isArray(params)) {
-    throw new Error('$and operator expects an array.');
+    throw new Error("$and operator expects an array.");
   }
 
   for (let item of params) {
@@ -283,4 +283,3 @@ function evaluateRules(rules, context = {}) {
 }
 
 exports.evaluateRules = evaluateRules;
-//# sourceMappingURL=index.cjs.map

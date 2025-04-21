@@ -3,7 +3,7 @@ import { resolveValue } from "../utils/resolveValue";
 
 function neOperator(params, context = {}) {
   if (!Array.isArray(params) || params.length < 2) {
-    throw new Error('$ne operator expects an array with at least two elements.');
+    throw new Error("$ne operator expects an array with at least two elements.");
   }
 
   const resolvedValues = params.map(p => resolveValue(p, context));

@@ -1,34 +1,36 @@
 {
-  "name": "rule-engine",
+  "name": "@maayanpolitzer/rules-engine",
+  "version": "1.0.3",
+  "description": "A lightweight, powerful and flexible rule evaluation engine designed for simple or complex logical operations. Perfect for projects requiring customizable validation, dynamic conditions, or decision trees based on json. inspired by MongoDB filters.",
+  "type": "module",
+  "main": "dist/index.min.cjs",
+  "module": "dist/index.min.esm.js",
+  "exports": {
+    "require": "./dist/index.min.cjs",
+    "import": "./dist/index.min.esm.js"
+  },
+  "scripts": {
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
+    "benchmark": "NODE_OPTIONS='--experimental-vm-modules' jest tests/performance --runInBand",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "build": "rollup -c"
+  },
+  "homepage": "https://github.com/maayanpolitzer/rule-engine",
   "repository": {
     "type": "git",
     "url": "https://github.com/maayanpolitzer/rule-engine.git"
   },
-  "version": "1.0.0",
-  "description": "A flexible and powerful rule evaluation engine inspired by MongoDB filters.",
-  "main": "dist/index.cjs",
-  "module": "dist/index.esm.js",
-  "exports": {
-    "import": "./dist/index.esm.js",
-    "require": "./dist/index.cjs"
-  },
-  "type": "module",
-  "homepage": "https://github.com/maayanpolitzer/rule-engine",
   "bugs": {
     "url": "https://github.com/maayanpolitzer/rule-engine/issues"
   },
+  "author": "Maayan Politzer <maayanpolitzer2@gmail.com>",
+  "license": "MIT",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "package.json"
   ],
-  "scripts": {
-    "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
-    "benchmark": "jest tests/performance --runInBand",
-    "test:int": "jest tests/integrations --runInBand",
-    "test:op": "jest",
-    "lint": "eslint .",
-    "build": "rollup -c",
-    "build:watch": "rollup -c -w"
-  },
   "keywords": [
     "rules",
     "engine",
@@ -51,11 +53,11 @@
     "poli",
     "rule-processor"
   ],
-  "author": "Maayan Politzer <maayanpolitzer2@gmail.com>",
-  "license": "MIT",
   "devDependencies": {
+    "@eslint/js": "^9.25.0",
     "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-node-resolve": "^16.0.1",
+    "eslint": "^9.25.0",
     "jest": "^29.7.0",
     "rollup": "^2.79.2",
     "rollup-plugin-terser": "^7.0.2"

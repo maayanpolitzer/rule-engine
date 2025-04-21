@@ -7,7 +7,7 @@ import { evaluateRule } from "../evaluateRule";
 
 function andOperator(params, context = {}) {
   if (!Array.isArray(params)) {
-    throw new Error('$and operator expects an array.');
+    throw new Error("$and operator expects an array.");
   }
 
   for (let item of params) {

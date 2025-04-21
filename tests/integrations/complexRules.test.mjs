@@ -70,7 +70,7 @@ describe("Complex Rule Scenarios", () => {
     const context = { user: { name: "John" } };
     const rules = [{ $gt: ["{{user.age}}", 18] }];
     expect(() => evaluateRules(rules, context)).toThrow(
-      'Path "user.age" does not exist in context.'
+      "Path \"user.age\" does not exist in context."
     );
   });
 
