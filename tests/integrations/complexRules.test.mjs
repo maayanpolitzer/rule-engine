@@ -1,4 +1,4 @@
-const { runRules } = require("../../src");
+import { evaluateRules } from "../../dist/index.esm.js";
 
 describe("Complex Rule Scenarios", () => {
   it("should evaluate multiple rules with context values", () => {
@@ -8,7 +8,7 @@ describe("Complex Rule Scenarios", () => {
       { $lt: ["{{user.score}}", 100] },
       { $eq: [5, 5, 5] },
     ];
-    expect(runRules(rules, {}, context)).toBe(true);
+    expect(evaluateRules(rules, context)).toBe(true);
   });
 
   it("should fail if one rule fails", () => {
@@ -18,7 +18,7 @@ describe("Complex Rule Scenarios", () => {
       { $lt: ["{{user.score}}", 100] }, // true
       { $eq: [5, 5, 5] }, // true
     ];
-    expect(runRules(rules, {}, context)).toBe(true);
+    expect(evaluateRules(rules, context)).toBe(true);
   });
 
   it("should fail because the last inernal rule is false, and the wrapper rule is $eq", () => {
@@ -32,7 +32,7 @@ describe("Complex Rule Scenarios", () => {
         ],
       },
     ];
-    expect(runRules(rules, {}, context)).toBe(false);
+    expect(evaluateRules(rules, context)).toBe(false);
   });
 
   it("should correctly handle nested rules inside rules", () => {
@@ -45,7 +45,7 @@ describe("Complex Rule Scenarios", () => {
         ],
       },
     ];
-    expect(runRules(rules, {}, context)).toBe(true);
+    expect(evaluateRules(rules, context)).toBe(true);
   });
 
   it("should handle very deep nesting of rules", () => {
@@ -63,15 +63,13 @@ describe("Complex Rule Scenarios", () => {
         ],
       },
     ];
-    expect(runRules(rules, {}, context)).toBe(true);
+    expect(evaluateRules(rules, context)).toBe(true);
   });
 
   it("should throw if accessing invalid context path", () => {
     const context = { user: { name: "John" } };
-    const rules = [
-      { $gt: ["{{user.age}}", 18] }, // user.age לא קיים
-    ];
-    expect(() => runRules(rules, {}, context)).toThrow(
+    const rules = [{ $gt: ["{{user.age}}", 18] }];
+    expect(() => evaluateRules(rules, context)).toThrow(
       'Path "user.age" does not exist in context.'
     );
   });
@@ -82,9 +80,7 @@ describe("Complex Rule Scenarios", () => {
         $eq: [5, 5],
       },
     ];
-    expect(
-      runRules(rules, { returnIfTrue: "VALID", returnIfFalse: "INVALID" })
-    ).toBe("VALID");
+    expect(evaluateRules(rules)).toBe(true);
   });
 
   it("should evaluate mix of static and context values", () => {
@@ -93,6 +89,6 @@ describe("Complex Rule Scenarios", () => {
       { $gte: ["{{order.amount}}", 100] },
       { $lt: ["{{order.amount}}", 200] },
     ];
-    expect(runRules(rules, {}, context)).toBe(true);
+    expect(evaluateRules(rules, context)).toBe(true);
   });
 });

@@ -1,7 +1,9 @@
-// src/core/operators/or.js
-const { isRuleObject } = require("../utils/isRuleObject");
-const { resolveValue } = require("../utils/resolveValue");
-const { evaluateRule } = require("../evaluateRule");
+// const { isRuleObject } = require("../utils/isRuleObject");
+import { isRuleObject } from "../utils/isRuleObject";
+// const { resolveValue } = require("../utils/resolveValue");
+import { resolveValue } from "../utils/resolveValue";
+// const { evaluateRule } = require("../evaluateRule");
+import { evaluateRule } from "../evaluateRule";
 
 function orOperator(params, context = {}) {
   if (!Array.isArray(params)) {
@@ -21,4 +23,4 @@ function orOperator(params, context = {}) {
   return false;
 }
 
-module.exports = orOperator;
+export default orOperator;

@@ -1,4 +1,4 @@
-const { runRules } = require("../../src");
+import { evaluateRules } from "../../dist/index.esm.js";
 
 describe("Performance Test - $eq vs $and", () => {
   const context = {
@@ -38,13 +38,13 @@ describe("Performance Test - $eq vs $and", () => {
   it("should compare $eq and $and performance", () => {
     const eqTime = measurePerformance(() => {
       for (let i = 0; i < 10000; i++) {
-        runRules(ruleUsingEq, {}, context);
+        evaluateRules(ruleUsingEq, context);
       }
     });
 
     const andTime = measurePerformance(() => {
       for (let i = 0; i < 10000; i++) {
-        runRules(ruleUsingAnd, {}, context);
+        evaluateRules(ruleUsingAnd, context);
       }
     });
 
@@ -52,8 +52,8 @@ describe("Performance Test - $eq vs $and", () => {
     console.log(`$and time: ${andTime.toFixed(2)} ms`);
 
     // פשוט לוודא ששניהם באמת עבדו
-    expect(runRules(ruleUsingEq, {}, context)).toBe(true);
-    expect(runRules(ruleUsingAnd, {}, context)).toBe(true);
+    expect(evaluateRules(ruleUsingEq, context)).toBe(true);
+    expect(evaluateRules(ruleUsingAnd, context)).toBe(true);
 
     // אפשר גם לבדוק אם and יותר מהיר (לא חובה כי זה תלוי מכונה, אבל בשביל הניסוי)
     expect(andTime).toBeLessThanOrEqual(eqTime);

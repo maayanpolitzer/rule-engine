@@ -1,4 +1,4 @@
-const { runRules } = require("../../src/index");
+import { evaluateRules } from "../../dist/index.esm.js";
 
 describe("Full Engine Integration Test", () => {
   const context = {
@@ -28,7 +28,7 @@ describe("Full Engine Integration Test", () => {
       { $eq: [{ $gt: ["{{product.stock}}", 0] }, true] }, // true (stock > 0)
     ];
 
-    expect(runRules(rules, {}, context)).toBe(true);
+    expect(evaluateRules(rules, context)).toBe(true);
   });
 
   it("should correctly evaluate complex nested rules - only last rule is true", () => {
@@ -44,7 +44,7 @@ describe("Full Engine Integration Test", () => {
       { $eq: [{ $gt: ["{{product.stock}}", 10] }, false] },
     ];
 
-    expect(runRules(rules, {}, context)).toBe(true);
+    expect(evaluateRules(rules, context)).toBe(true);
   });
 
   it("should return false if any top-level rule fails", () => {
@@ -66,6 +66,6 @@ describe("Full Engine Integration Test", () => {
       },
     ];
 
-    expect(runRules(rules, {}, context)).toBe(false);
+    expect(evaluateRules(rules, context)).toBe(false);
   });
 });

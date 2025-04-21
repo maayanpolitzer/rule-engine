@@ -1,4 +1,5 @@
-const { resolveValue } = require('../utils/resolveValue');
+// const { resolveValue } = require("../utils/resolveValue");
+import { resolveValue } from "../utils/resolveValue";
 
 function lteOperator(params, context = {}) {
   if (!Array.isArray(params) || params.length !== 2) {
@@ -9,4 +10,4 @@ function lteOperator(params, context = {}) {
   return left <= right;
 }
 
-module.exports = lteOperator;
+export default lteOperator;

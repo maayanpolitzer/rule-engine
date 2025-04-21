@@ -1,4 +1,4 @@
-const { runRules } = require("../../src");
+import { evaluateRules } from "../../dist/index.esm.js";
 
 describe("Performance comparison between similar rules", () => {
   const ITERATIONS = 10000;
@@ -39,14 +39,14 @@ describe("Performance comparison between similar rules", () => {
       // Measure rule1
       const start1 = performance.now();
       for (let i = 0; i < ITERATIONS; i++) {
-        result1 = runRules([rule1], {}, context);
+        result1 = evaluateRules([rule1], {}, context);
       }
       const end1 = performance.now();
 
       // Measure rule2
       const start2 = performance.now();
       for (let i = 0; i < ITERATIONS; i++) {
-        result2 = runRules([rule2], {}, context);
+        result2 = evaluateRules([rule2], {}, context);
       }
       const end2 = performance.now();
 

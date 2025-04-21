@@ -7,4 +7,5 @@ function isRuleObject(obj) {
   );
 }
 
-module.exports = { isRuleObject };
+// module.exports = { isRuleObject };
+export {isRuleObject};

@@ -1,25 +1,25 @@
-const { runRules } = require("../../src");
+import { evaluateRules } from "../../dist/index.esm.js";
 
 describe("$ne Operator", () => {
   it("should return true if values are not equal", () => {
     const rules = [{ $ne: [5, 10] }];
-    expect(runRules(rules)).toBe(true);
+    expect(evaluateRules(rules)).toBe(true);
   });
 
   it("should return false if all values are equal", () => {
     const rules = [{ $ne: [5, 5, 5] }];
-    expect(runRules(rules)).toBe(false);
+    expect(evaluateRules(rules)).toBe(false);
   });
 
   it("should handle context values", () => {
     const context = { user: { id: "1234" } };
     const rules = [{ $ne: ["{{user.id}}", "5678"] }];
-    expect(runRules(rules, {}, context)).toBe(true);
+    expect(evaluateRules(rules, context)).toBe(true);
   });
 
   it("should throw error if less than two values provided", () => {
     const rules = [{ $ne: [5] }];
-    expect(() => runRules(rules)).toThrow();
+    expect(() => evaluateRules(rules)).toThrow();
   });
 
   it("should correctly evaluate nested rules inside $ne", () => {
@@ -31,6 +31,6 @@ describe("$ne Operator", () => {
         ],
       },
     ];
-    expect(runRules(rules)).toBe(false);
+    expect(evaluateRules(rules)).toBe(false);
   });
 });

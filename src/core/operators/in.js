@@ -1,6 +1,9 @@
-const { isRuleObject } = require("../utils/isRuleObject");
-const { resolveValue } = require("../utils/resolveValue");
-const { evaluateRule } = require("../evaluateRule");
+// const { isRuleObject } = require("../utils/isRuleObject");
+import { isRuleObject } from "../utils/isRuleObject";
+// const { resolveValue } = require("../utils/resolveValue");
+import { resolveValue } from "../utils/resolveValue";
+// const { evaluateRule } = require("../evaluateRule");
+import { evaluateRule } from "../evaluateRule";
 
 function inOperator(params, context = {}) {
   if (!Array.isArray(params) || params.length !== 2) {
@@ -28,4 +31,4 @@ function inOperator(params, context = {}) {
   return array.includes(value);
 }
 
-module.exports = inOperator;
+export default inOperator;

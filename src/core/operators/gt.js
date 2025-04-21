@@ -1,4 +1,7 @@
-const { resolveValue } = require('../utils/resolveValue');
+
+// const { resolveValue } = require("../utils/resolveValue");
+import { resolveValue } from "../utils/resolveValue";
+
 
 function gtOperator(params, context = {}) {
   if (!Array.isArray(params) || params.length !== 2) {
@@ -9,4 +12,4 @@ function gtOperator(params, context = {}) {
   return left > right;
 }
 
-module.exports = gtOperator;
+export default gtOperator;

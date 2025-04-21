@@ -1,6 +1,9 @@
-const { isRuleObject } = require('../utils/isRuleObject');
-const { resolveValue } = require('../utils/resolveValue');
-const { evaluateRule } = require('../evaluateRule');
+// const { isRuleObject } = require("../utils/isRuleObject");
+import { isRuleObject } from "../utils/isRuleObject";
+// const { resolveValue } = require("../utils/resolveValue");
+import { resolveValue } from "../utils/resolveValue";
+// const { evaluateRule } = require("../evaluateRule");
+import { evaluateRule } from "../evaluateRule";
 
 function andOperator(params, context = {}) {
   if (!Array.isArray(params)) {
@@ -22,4 +25,4 @@ function andOperator(params, context = {}) {
   return true;
 }
 
-module.exports = andOperator;
+export default andOperator;

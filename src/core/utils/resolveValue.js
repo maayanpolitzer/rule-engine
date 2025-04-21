@@ -1,27 +1,27 @@
 function resolveValue(value, context) {
-  // אם value הוא string
   if (typeof value === "string") {
-    const match = value.match(/^{{(.*?)}}$/); // מנסה למצוא מחרוזת בתבנית {{...}}
-    
+    const match = value.match(/^{{(.*?)}}$/);
+
     if (match) {
-      const path = match[1].trim(); // חותך את ה-{{...}}
-      const parts = path.split("."); // מפרק את ה-path
+      const path = match[1].trim();
+      const parts = path.split(".");
 
       let result = context;
       for (const part of parts) {
         if (result == null || !(part in result)) {
           throw new Error(`Path "${path}" does not exist in context.`);
         }
-        result = result[part]; // עובר על המידע בקונטקסט
+        result = result[part];
       }
       return result;
     }
   }
 
-  return value; // אם value לא היה string מתאים, מחזירים אותו כמו שהוא
+  return value;
 }
 
+// module.exports = {
+//   resolveValue,
+// };
 
-module.exports = {
-  resolveValue,
-};
+export { resolveValue };

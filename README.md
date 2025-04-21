@@ -1,35 +1,35 @@
-# RuleEngine ✨✨✨
+# RuleEngine
 
-A lightweight, flexible rule evaluation engine designed for simple or complex logical operations. 🌟⚙️🛠️  
-Perfect for projects requiring customizable validation, dynamic conditions, or decision trees. 🌳📈🔍
+A lightweight, flexible rule evaluation engine designed for simple or complex logical operations.  
+Perfect for projects requiring customizable validation, dynamic conditions, or decision trees based on json/js objects.
 
 ---
 
-## ✨ Features 🎉🌟🚀
+## Features
 
 - Built-in operators: `$eq`, `$gt`, `$gte`, `$lt`, `$lte`, `$ne`, `$and`, `$or`, `$in`
 - Easy nesting of rules
 - Context-aware value resolution
-- Simple plugin-based architecture for future extensions
+<!-- - Simple plugin-based architecture for future extensions -->
 - Zero dependencies
 - 100% JavaScript (Node.js)
 
 ---
 
-## 📦 Installation 📦🔧🚲
+## Installation
 
 ```bash
-npm install rule-engine-light
+npm install rule-engine
 ```
 
 (Or clone this repository for local development.)
 
 ---
 
-## 🚀 Usage 🚀📜🔎
+## Usage
 
 ```javascript
-const { runRules } = require("rule-engine-light");
+import { evaluateRules } from "../../dist/index.esm.js";
 
 const context = {
   user: {
@@ -43,17 +43,14 @@ const rules = [
   { $eq: ["{{user.role}}", "admin"] },
 ];
 
-const result = runRules(rules, {
-  returnIfTrue: "Access Granted",
-  returnIfFalse: "Access Denied",
-});
+const result = evaluateRules(rules, context);
 
-console.log(result); // "Access Granted"
+console.log(result);
 ```
 
 ---
 
-## 🔧 Supported Operators 🧰📋🛠️
+## Supported Operators
 
 | Operator | Description                                  |
 | :------- | :------------------------------------------- |
@@ -69,7 +66,7 @@ console.log(result); // "Access Granted"
 
 ---
 
-## 🧐 Important Notes 📚🧠📢
+## Important Notes
 
 - **Context Values**: To pull a dynamic value from the context, wrap it in double curly braces:  
   Example: "{{user.age}}"
@@ -78,7 +75,7 @@ console.log(result); // "Access Granted"
 
 ---
 
-## 🛠️ Development & Testing 🧪🛠️🔬
+## Development & Testing
 
 Run all tests:
 
@@ -94,19 +91,13 @@ npm run benchmark
 
 ---
 
-## 📔 License 🗜️🌃🎉
+## License
 
 MIT License — Free for personal or commercial use.
 
 ---
 
-## 🤝 Contributing 🤝💬📈
+## Contributing
 
 Feel free to open issues or submit pull requests!  
 Ideas for new operators, better performance, or features are welcome.
-
----
-
-## ❤️ Special Thanks 🎉🙏🌟
-
-Thanks to the open-source community for inspiring this lightweight and powerful engine! 🚀🌍🛠️

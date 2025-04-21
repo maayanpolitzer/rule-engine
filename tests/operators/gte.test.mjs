@@ -1,24 +1,24 @@
-const { runRules } = require("../../src");
+import { evaluateRules } from "../../dist/index.esm.js";
 
 describe("$gte Operator", () => {
   it("should return true if first number is greater than second", () => {
     const rules = [{ $gte: [10, 5] }];
-    expect(runRules(rules)).toBe(true);
+    expect(evaluateRules(rules)).toBe(true);
   });
 
   it("should return true if both numbers are equal", () => {
     const rules = [{ $gte: [5, 5] }];
-    expect(runRules(rules)).toBe(true);
+    expect(evaluateRules(rules)).toBe(true);
   });
 
   it("should return false if first number is smaller than second", () => {
     const rules = [{ $gte: [3, 5] }];
-    expect(runRules(rules)).toBe(false);
+    expect(evaluateRules(rules)).toBe(false);
   });
 
   it("should throw error if array length is not 2", () => {
     const rules = [{ $gte: [5] }];
-    expect(() => runRules(rules)).toThrow(
+    expect(() => evaluateRules(rules)).toThrow(
       "$gte operator expects an array with exactly two elements."
     );
   });
@@ -32,7 +32,7 @@ describe("$gte Operator", () => {
         ],
       },
     ];
-    expect(runRules(rules)).toBe(true);
+    expect(evaluateRules(rules)).toBe(true);
   });
 
   it("should handle context values", () => {
@@ -44,6 +44,6 @@ describe("$gte Operator", () => {
     const context = {
       user: { age: 21 },
     };
-    expect(runRules(rules, {}, context)).toBe(true);
+    expect(evaluateRules(rules, context)).toBe(true);
   });
 });

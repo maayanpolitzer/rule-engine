@@ -1,7 +1,9 @@
-const operators = require("./operators");
-const { isRuleObject } = require("./utils/isRuleObject");
+// const operators = require("./operators");
+import operators from "./operators";
+// const { isRuleObject } = require("./utils/isRuleObject");
+import { isRuleObject } from "./utils/isRuleObject";
 
-function evaluateRule(rule, context = {}) {
+function evaluateRule(rule, context) {
   if (!isRuleObject(rule)) {
     return rule;
   }
@@ -22,4 +24,6 @@ function evaluateRule(rule, context = {}) {
   return operatorFn(resolvedParams, context);
 }
 
-module.exports = { evaluateRule };
+// module.exports = { evaluateRule };
+
+export { evaluateRule };

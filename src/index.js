@@ -1,5 +1,3 @@
-const { runRules } = require('./core/RuleEngine');
+import { evaluateRules } from "./core/RuleEngine";
 
-module.exports = {
-  runRules,
-};
+export { evaluateRules };

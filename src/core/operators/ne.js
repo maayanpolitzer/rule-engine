@@ -1,4 +1,5 @@
-const { resolveValue } = require('../utils/resolveValue');
+// const { resolveValue } = require("../utils/resolveValue");
+import { resolveValue } from "../utils/resolveValue";
 
 function neOperator(params, context = {}) {
   if (!Array.isArray(params) || params.length < 2) {
@@ -10,4 +11,4 @@ function neOperator(params, context = {}) {
   return !resolvedValues.every(v => v === first);
 }
 
-module.exports = neOperator;
+export default neOperator;
